@@ -1,0 +1,186 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body {
+    background: rgb(247, 135, 247);
+    padding: 30px;
+        }
+.navbar {
+  background-color: #e21157;
+  
+}
+.navbar-brand {
+  color: #fce4ec;
+  font-weight: bold;
+  font-size: 42px;
+  font-family: "Monsieur La Doulaise", cursive;
+}
+.navbar-brand:hover{
+  color: #fce4ec;
+  transform: scale(1.1);
+  transition: 1s;
+}
+
+/* .mynav {
+    background: #0F0E47;
+    padding: 12px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid rgb(255, 255, 255);
+} */
+/* 
+.web {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.brand {
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    font-size: 35px !important;
+}
+.brand:hover{
+    color: white;
+} */
+
+.form-select {
+    border-radius: 8px;
+}
+
+.myhero img {
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.myproducts {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+/* .card{
+    background-color: rgb(191, 191, 196);
+} */
+.card img {
+    height: 220px;
+    object-fit: contain !important;
+    padding: 15px;
+}
+
+.card-title{
+    color: #262175;
+}
+
+.price {
+    color: #ffffff !important;
+    font-weight: bold;
+    margin-top: 7px;
+    margin-bottom: 0;
+}
+.icon {
+    font-size: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-primary {
+    background: #6C63FF;
+    border: none;
+    border-radius: 8px;
+}
+.img1{
+    object-fit: contain;
+}
+.btn-primary:hover {
+    background: #574fd6;
+}
+.myhero {
+    margin-top: -20px !important;
+}
+
+.carousel {
+    margin-top: 0 !important;
+}
+
+.mainpart {
+    margin-top: 5.4rem!important;
+    padding-top: 0 !important;
+    width: 70% !important;
+}
+.sidebar_heading{
+    font-size: 20px;
+}
+.sidebar{
+    border-radius: 20px;
+}
+.carousel img{
+    border-radius: 20px !important;
+    width: 70% !important;
+    /* height: 80vh !important;
+    margin-right:400px !important; */
+}
+.card-footer{
+    background-color: #e61062e8;
+}
+.card-title{
+    color: #e90505de;
+}
+
+.footer-link {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: #ff00b3;
+    text-decoration: underline;
+}
+
+footer {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 100%;
+      position: relative;
+        bottom: 100%; 
+       display: flex;
+}
+.foot{
+    background: linear-gradient(135deg, #F4C2C2, #e90e7c) !important;
+    /* background-color: #3a471c9f !important; */
+    color: #1a1414 !important;
+    padding: 20px 0;
+}
+/* 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+} */
+
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    text-align: center;
+  }
+}
