@@ -284,304 +284,212 @@ Clothes: {
         }
     }
 }
-/* ________________________________logic___________________________ */
+// ===================== RENDER FUNCTION =====================
+function render(product) {
+    const div = document.getElementById("allProducts");
 
-var allProducts = document.getElementById("allProducts");
-for (var category in ecommerce) {
-    // console.log(category);
-    for (var subCate in ecommerce[category]) {
-        // console.log(subCate);
-        for (var type in ecommerce[category][subCate]) {
-            // console.log(type);
-            for (var brand in ecommerce[category][subCate][type]) {
-                // console.log(brand);
-                var product = ecommerce[category][subCate][type][brand]
-                // console.log(product);
-                if (product.name && product.price) {
-                    allProducts.innerHTML += `<div class="col">
-    <div class="card h-100">
-      <img src="${product.src}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title fw-bold">${product.name}</h5>
-        <p class="card-text">${product.description}</p>
-      </div>
-      <div class="card-footer d-flex justify-content-between align-items-center">
-        <p class="text-body-secondary price">${product.price}/-</p><i class="fa-solid icon fa-cart-arrow-down"></i>
-      </div>
-    </div>`
+    div.innerHTML += `
+    <div class="col">
+        <div class="card h-100">
+            <img src="${product.src}" class="card-img-top">
+            <div class="card-body">
+                <h5>${product.name}</h5>
+                <p>${product.description}</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <p>${product.price}/-</p>
+                <i class="fa-solid fa-cart-arrow-down"
+                   onclick='addToCart(${JSON.stringify(product)})'></i>
+            </div>
+        </div>
+    </div>`;
+}
+
+// ===================== LOAD ALL =====================
+function loadAllProducts() {
+    const div = document.getElementById("allProducts");
+    div.innerHTML = "";
+
+    for (let category in ecommerce) {
+
+        if (category === "Accessories") {
+            for (let item in ecommerce[category]) {
+                render(ecommerce[category][item]);
+            }
+        }
+
+        else if (category === "Clothes") {
+            for (let type in ecommerce[category]) {
+                for (let brand in ecommerce[category][type]) {
+                    render(ecommerce[category][type][brand]);
                 }
             }
         }
 
-    }
-
-}
-
-var accessories = ecommerce.Accessories;
-// console.log(accessories);
-for (var items in accessories) {
-    // console.log(items);
-    var product = accessories[items];
-    allProducts.innerHTML += `<div class="col">
-    <div class="card h-100">
-      <img src="${product.src}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title fw-bold">${product.name}</h5>
-        <p class="card-text">${product.description}</p>
-      </div>
-      <div class="card-footer d-flex justify-content-between align-items-center">
-        <p class="text-body-secondary price">${product.price}/-</p><i class="fa-solid icon fa-cart-arrow-down"></i>
-      </div>
-    </div>`
-
-}
-
-
-// function loadBrands() {
-//     var category = document.getElementById("category").value;
-//     var brandSelect = document.getElementById("brand");
-//     var typeSelect = document.getElementById("type");
-function loadBrands() {
-    var category = document.getElementById("category").value;
-    var brandSelect = document.getElementById("brand");
-    var typeSelect = document.getElementById("type");
-
-    brandSelect.innerHTML = `<option value="">Select Brand</option>`;
-    typeSelect.innerHTML = `<option value="">Select Type</option>`;
-
-    if (!category) return;
-
-    var subCategories = ecommerce[category];
-    var addedBrands = {};
-
-    for (var sub in subCategories) {
-        for (var type in subCategories[sub]) {
-            for (var brand in subCategories[sub][type]) {
-
-                if (!addedBrands[brand]) {
-                    brandSelect.innerHTML += `<option value="${brand}">${brand}</option>`;
-                    addedBrands[brand] = true;
-                }
-
-            }
-        }
-    }
-
-    // brandSelect.innerHTML = `<option value="">Select Brand</option>`;
-    // typeSelect.innerHTML = `<option value="">Select Type</option>`;
-
-    // if (!category) return;
-
-    // var subCategories = ecommerce[category];
-
-    // for (var sub in subCategories) {
-    //     for (var type in subCategories[sub]) {
-    //         for (var brand in subCategories[sub][type]) {
-    //             brandSelect.innerHTML += `<option value="${brand}">${brand}</option>`;
-    //         }
-    //     }
-    // }
-}
-
-// function loadTypes() {
-//     var category = document.getElementById("category").value;
-//     var brand = document.getElementById("brand").value;
-//     var typeSelect = document.getElementById("type");
-
-//     typeSelect.innerHTML = `<option value="">Select Type</option>`;
-
-//     if (!category || !brand) return;
-
-//     var subCategories = ecommerce[category];
-
-//     for (var sub in subCategories) {
-//         for (var type in subCategories[sub]) {
-//             if (subCategories[sub][type][brand]) {
-//                 typeSelect.innerHTML += `<option value="${type}">${type}</option>`;
-//             }
-//         }
-//     }
-// }
-
-function loadTypes() {
-    var category = document.getElementById("category").value;
-    var brand = document.getElementById("brand").value;
-    var typeSelect = document.getElementById("type");
-
-    typeSelect.innerHTML = `<option value="">Select Type</option>`;
-
-    if (!category || !brand) return;
-
-    var subCategories = ecommerce[category];
-
-    for (var sub in subCategories) {
-        for (var type in subCategories[sub]) {
-
-            if (subCategories[sub][type][brand]) {
-                typeSelect.innerHTML += `<option value="${type}">${type}</option>`;
-            }
-
-        }
-    }
-}
-function applyFilters() {
-
-    // var category = document.getElementById("category").value;
-    // var brand = document.getElementById("brand").value;
-    // var type = document.getElementById("type").value;
-
-    // var container = document.getElementById("allProducts");
-    // container.innerHTML = "";
-
-    // for (var cat in ecommerce) {
-
-    //     if (category && cat !== category) continue;
-
-    //     for (var sub in ecommerce[cat]) {
-    //         for (var typ in ecommerce[cat][sub]) {
-
-    //             if (type && typ !== type) continue;
-
-    //             for (var br in ecommerce[cat][sub][typ]) {
-
-    //                 if (brand && br !== brand) continue;
-
-    //                 var product = ecommerce[cat][sub][typ][br];
-
-
-    var category = document.getElementById("category").value;
-    var brand = document.getElementById("brand").value;
-    var type = document.getElementById("type").value;
-
-    var container = document.getElementById("allProducts");
-    container.innerHTML = "";
-
-    for (var cat in ecommerce) {
-
-        if (category && cat !== category) continue;
-
-        var subCategories = ecommerce[cat];
-
-        for (var sub in subCategories) {
-
-            for (var typ in subCategories[sub]) {
-
-                if (type && typ !== type) continue;
-
-                for (var br in subCategories[sub][typ]) {
-
-                    if (brand && br !== brand) continue;
-
-                    var product = subCategories[sub][typ][br];
-
-                    if (product.name) {
-                        container.innerHTML += `
-                        <div class="col">
-                            <div class="card h-100">
-                                <img src="${product.src}" class="card-img-top">
-                                <div class="card-body">
-                                    <h5>${product.name}</h5>
-                                    <p>${product.description}</p>
-                                </div>
-                                <div class="card-footer">
-                                    <p>${product.price}/-</p>
-                                </div>
-                            </div>
-                        </div>`;
+        else {
+            for (let sub in ecommerce[category]) {
+                for (let type in ecommerce[category][sub]) {
+                    for (let brand in ecommerce[category][sub][type]) {
+                        render(ecommerce[category][sub][type][brand]);
                     }
                 }
             }
         }
     }
 }
-function showAllProducts() {
-    location.reload();
+
+// ===================== LOAD BRANDS =====================
+function loadBrands() {
+    const category = document.getElementById("category").value;
+    const brandSelect = document.getElementById("brand");
+    const typeSelect = document.getElementById("type");
+
+    brandSelect.innerHTML = `<option value="">Select Brand</option>`;
+    typeSelect.innerHTML = `<option value="">Select Type</option>`;
+
+    if (!category) return;
+
+    let brands = new Set();
+
+    if (category === "Clothes") {
+        for (let type in ecommerce[category]) {
+            for (let brand in ecommerce[category][type]) {
+                brands.add(brand);
+            }
+        }
+    }
+
+    else if (category === "Accessories") {
+        for (let item in ecommerce[category]) {
+            brands.add(item);
+        }
+    }
+
+    else {
+        for (let sub in ecommerce[category]) {
+            for (let type in ecommerce[category][sub]) {
+                for (let brand in ecommerce[category][sub][type]) {
+                    brands.add(brand);
+                }
+            }
+        }
+    }
+
+    brands.forEach(b => {
+        brandSelect.innerHTML += `<option value="${b}">${b}</option>`;
+    });
 }
 
-// function applyFilters() {
+// ===================== LOAD TYPES =====================
+function loadTypes() {
+    const category = document.getElementById("category").value;
+    const brand = document.getElementById("brand").value;
+    const typeSelect = document.getElementById("type");
 
-//     var categoryValue = document.getElementById("category").value;
-//     // var genderValue = document.getElementById("gender").value;
-//     // var typeValue = document.getElementById("type").value;
-//     var genderValue = "";
-//     var typeValue = "";
-//     var allProductsDiv = document.getElementById("allProducts");
-//     allProductsDiv.innerHTML = "";
+    typeSelect.innerHTML = `<option value="">Select Type</option>`;
 
-//     var found = false; 
-//     for (var category in ecommerce) {
+    if (!category || !brand) return;
 
-//         // if (category === "Accessories") continue;
-//         if ((!categoryValue || categoryValue === "Accessories"))
-//         if (categoryValue && category !== categoryValue) continue;
+    let types = new Set();
 
-//         for (var subCate in ecommerce[category]) {
+    if (category === "Clothes") {
+        for (let type in ecommerce[category]) {
+            if (ecommerce[category][type][brand]) {
+                types.add(type);
+            }
+        }
+    }
 
-//             if (genderValue && subCate !== genderValue) continue;
+    else if (category === "Accessories") {
+        types.add("General");
+    }
 
-//             for (var type in ecommerce[category][subCate]) {
+    else {
+        for (let sub in ecommerce[category]) {
+            for (let type in ecommerce[category][sub]) {
+                if (ecommerce[category][sub][type][brand]) {
+                    types.add(type);
+                }
+            }
+        }
+    }
 
-//                 // Type filter
-//                 if (typeValue && type !== typeValue) continue;
+    types.forEach(t => {
+        typeSelect.innerHTML += `<option value="${t}">${t}</option>`;
+    });
+}
 
-//                 for (var brand in ecommerce[category][subCate][type]) {
+// ===================== APPLY FILTER =====================
+function applyFilters() {
+    const category = document.getElementById("category").value;
+    const brand = document.getElementById("brand").value;
+    const type = document.getElementById("type").value;
 
-//                     var item = ecommerce[category][subCate][type][brand];
+    const div = document.getElementById("allProducts");
+    div.innerHTML = "";
 
-//                     if (item.name && item.price) {
-//                         found = true;
+    let found = false;
 
-//                         allProductsDiv.innerHTML += `
-//                         <div class="col">
-//                             <div class="card h-100">
-//                                 <img src="${item.src}" class="card-img-top">
-//                                 <div class="card-body">
-//                                     <h5>${item.name}</h5>
-//                                     <p>${item.description}</p>
-//                                 </div>
-//                                 <div class="card-footer d-flex justify-content-between align-items-center">
-//                                     <p class="price">${item.price}/-</p>
-//                                     <i class="fa-solid icon fa-cart-arrow-down"></i>
-//                                 </div>
-//                             </div>
-//                         </div>`;
-//                     }
-//                 }
-//             }
-//         }
-//     }
+    if (!category) {
+        alert("Select category first");
+        return;
+    }
 
-    // if (
-    //     (!categoryValue || categoryValue === "accessories") &&
-    //     !genderValue &&
-    //     !typeValue
-    // ) {
-        // var accessories = ecommerce.Accessories;
+    if (category === "Clothes") {
+        for (let t in ecommerce[category]) {
 
-        // for (var itemKey in accessories) {
-        //     var item = accessories[itemKey];
-        //     found = true;
+            if (type && t !== type) continue;
 
-        //     allProductsDiv.innerHTML += `
-        //     <div class="col">
-        //         <div class="card h-100">
-        //             <img src="${item.src}" class="card-img-top">
-        //             <div class="card-body">
-        //                 <h5>${item.name}</h5>
-        //                 <p>${item.description}</p>
-        //             </div>
-        //             <div class="card-footer d-flex justify-content-between align-items-center">
-        //                 <p class="price">${item.price}/-</p>
-        //                 <i class="fa-solid icon fa-cart-arrow-down"></i>
-        //             </div>
-        //         </div>
-        //     </div>`;
-        // }
-    // }
-//     if (!found) {
-//         Swal.fire({
-//             icon: "error",
-//             title: "Oops...",
-//             text: "No products found for selected filters!",
-//         });
-//     }
+            for (let b in ecommerce[category][t]) {
+
+                if (brand && b !== brand) continue;
+
+                render(ecommerce[category][t][b]);
+                found = true;
+            }
+        }
+    }
+
+    else if (category === "Accessories") {
+        if (brand && ecommerce[category][brand]) {
+            render(ecommerce[category][brand]);
+            found = true;
+        }
+    }
+
+    else {
+        for (let sub in ecommerce[category]) {
+            for (let t in ecommerce[category][sub]) {
+
+                if (type && t !== type) continue;
+
+                for (let b in ecommerce[category][sub][t]) {
+
+                    if (brand && b !== brand) continue;
+
+                    render(ecommerce[category][sub][t][b]);
+                    found = true;
+                }
+            }
+        }
+    }
+
+    if (!found) {
+        Swal.fire({
+            icon: "error",
+            title: "No Product Found"
+        });
+    }
+}
+
+// ===================== CART =====================
+function addToCart(product) {
+    Swal.fire({
+        icon: "success",
+        title: product.name,
+        text: "Added to cart!"
+    });
+}
+
+// ===================== INIT =====================
+loadAllProducts();
