@@ -105,31 +105,31 @@ var ecommerce = {
                     description:"A hybrid formula designed with ceramides and hyaluronic acid to strengthen the skin barrier while providing broad-spectrum protection."
                 }
             }
-        
-        },
-        haircare: {
-            Sunsilk: {
-                shampoo: {
-                    name: "Sunsilk Black Shine Shampoo",
-                    src: "img/sunsilk shampoo.avif",
-                    price: "2500",
-                    description: " Features a Super-Mix formula with Henna, Pearl Protein, and Vitamin E to nourish hair, enhancing its natural black shine and strength."
-                },
-                conditioner: {
-                    name: "Brightening conditioner",
-                    src: "img/sunsilk conditioner.avif",
-                    price: "1999",
-                    description: "Formulated with amla pearl extract and Vitamin E to enhance natural shine, fight dullness, and provide nourishment."
-                },
-                serum:{
-                    name:"Sunsilk serum",
-                    src:"img/sunsilk serum.webp",
-                    price:"3000",
-                    description:" a lightweight, non-sticky hair styling product designed to tame frizz and add shine for up to 48 hours"
-                }
-            }
         }
-    },
+        },
+    //     haircare: {
+    //         Sunsilk: {
+    //             shampoo: {
+    //                 name: "Sunsilk Black Shine Shampoo",
+    //                 src: "img/sunsilk shampoo.avif",
+    //                 price: "2500",
+    //                 description: " Features a Super-Mix formula with Henna, Pearl Protein, and Vitamin E to nourish hair, enhancing its natural black shine and strength."
+    //             },
+    //             conditioner: {
+    //                 name: "Brightening conditioner",
+    //                 src: "img/sunsilk conditioner.avif",
+    //                 price: "1999",
+    //                 description: "Formulated with amla pearl extract and Vitamin E to enhance natural shine, fight dullness, and provide nourishment."
+    //             },
+    //             serum:{
+    //                 name:"Sunsilk serum",
+    //                 src:"img/sunsilk serum.webp",
+    //                 price:"3000",
+    //                 description:" a lightweight, non-sticky hair styling product designed to tame frizz and add shine for up to 48 hours"
+    //             }
+    //         }
+        
+    // },
 
 Clothes: {
             "T-Shirts": {
