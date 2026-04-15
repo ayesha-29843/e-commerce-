@@ -105,7 +105,7 @@ var ecommerce = {
                     description:"A hybrid formula designed with ceramides and hyaluronic acid to strengthen the skin barrier while providing broad-spectrum protection."
                 }
             }
-        }
+        
         },
         haircare: {
             Sunsilk: {
@@ -128,6 +128,7 @@ var ecommerce = {
                     description:" a lightweight, non-sticky hair styling product designed to tame frizz and add shine for up to 48 hours"
                 }
             }
+        }
     },
 
 Clothes: {
