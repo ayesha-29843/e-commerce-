@@ -105,32 +105,30 @@ var ecommerce = {
                     description:"A hybrid formula designed with ceramides and hyaluronic acid to strengthen the skin barrier while providing broad-spectrum protection."
                 }
             }
-        }
         },
-    //     haircare: {
-    //         Sunsilk: {
-    //             shampoo: {
-    //                 name: "Sunsilk Black Shine Shampoo",
-    //                 src: "img/sunsilk shampoo.avif",
-    //                 price: "2500",
-    //                 description: " Features a Super-Mix formula with Henna, Pearl Protein, and Vitamin E to nourish hair, enhancing its natural black shine and strength."
-    //             },
-    //             conditioner: {
-    //                 name: "Brightening conditioner",
-    //                 src: "img/sunsilk conditioner.avif",
-    //                 price: "1999",
-    //                 description: "Formulated with amla pearl extract and Vitamin E to enhance natural shine, fight dullness, and provide nourishment."
-    //             },
-    //             serum:{
-    //                 name:"Sunsilk serum",
-    //                 src:"img/sunsilk serum.webp",
-    //                 price:"3000",
-    //                 description:" a lightweight, non-sticky hair styling product designed to tame frizz and add shine for up to 48 hours"
-    //             }
-    //         }
-        
-    // },
-
+        haircare: {
+            Sunsilk: {
+                shampoo: {
+                    name: "Sunsilk Black Shine Shampoo",
+                    src: "img/sunsilk shampoo.avif",
+                    price: "2500",
+                    description: " Features a Super-Mix formula with Henna, Pearl Protein, and Vitamin E to nourish hair, enhancing its natural black shine and strength."
+                },
+                conditioner: {
+                    name: "Brightening conditioner",
+                    src: "img/sunsilk conditioner.avif",
+                    price: "1999",
+                    description: "Formulated with amla pearl extract and Vitamin E to enhance natural shine, fight dullness, and provide nourishment."
+                },
+                serum:{
+                    name:"Sunsilk serum",
+                    src:"img/sunsilk serum.webp",
+                    price:"3000",
+                    description:" a lightweight, non-sticky hair styling product designed to tame frizz and add shine for up to 48 hours"
+                }
+            }
+    }
+},
 Clothes: {
             "T-Shirts": {
                 zellbury: {
@@ -212,8 +210,8 @@ Clothes: {
                     description: " Beautiful Bridal Garara By Sadaf Fawad Khan "
                 }
                     }
-                        
-    },
+                        },
+
     footwear: {
                "Women": {
             shoes: {
@@ -286,6 +284,156 @@ Clothes: {
         }
     }
 }
+
+// // ===================== LOAD ALL PRODUCTS =====================
+// function loadAllProducts() {
+//     const div = document.getElementById("allProducts");
+//     div.innerHTML = "";
+
+//     for (let category in ecommerce) {
+//         for (let sub in ecommerce[category]) {
+
+//             if (category === "Accessories") {
+//                 let product = ecommerce[category][sub];
+//                 render(product);
+//             } else {
+//                 for (let type in ecommerce[category][sub]) {
+//                     for (let brand in ecommerce[category][sub][type]) {
+//                         let product = ecommerce[category][sub][type][brand];
+//                         render(product);
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// // ===================== RENDER =====================
+// function render(product) {
+//     const div = document.getElementById("allProducts");
+
+//     div.innerHTML += `
+//     <div class="col">
+//         <div class="card h-100">
+//             <img src="${product.src}" class="card-img-top">
+//             <div class="card-body">
+//                 <h5>${product.name}</h5>
+//                 <p>${product.description}</p>
+//             </div>
+//             <div class="card-footer d-flex justify-content-between">
+//                 <p>${product.price}/-</p>
+//                 <i class="fa-solid fa-cart-arrow-down"
+//                    onclick='addToCart(${JSON.stringify(product)})'></i>
+//             </div>
+//         </div>
+//     </div>`;
+// }
+
+// // ===================== LOAD BRANDS =====================
+// function loadBrands() {
+//     const category = document.getElementById("category").value;
+//     const brandSelect = document.getElementById("brand");
+//     const typeSelect = document.getElementById("type");
+
+//     brandSelect.innerHTML = `<option value="">Select Brand</option>`;
+//     typeSelect.innerHTML = `<option value="">Select Type</option>`;
+
+//     if (!category || !ecommerce[category]) return;
+
+//     let brands = new Set();
+
+//     for (let sub in ecommerce[category]) {
+//         for (let type in ecommerce[category][sub]) {
+//             for (let brand in ecommerce[category][sub][type]) {
+//                 brands.add(brand);
+//             }
+//         }
+//     }
+
+//     brands.forEach(b => {
+//         brandSelect.innerHTML += `<option value="${b}">${b}</option>`;
+//     });
+// }
+
+// // ===================== LOAD TYPES =====================
+// function loadTypes() {
+//     const category = document.getElementById("category").value;
+//     const brand = document.getElementById("brand").value;
+//     const typeSelect = document.getElementById("type");
+
+//     typeSelect.innerHTML = `<option value="">Select Type</option>`;
+
+//     if (!category || !brand) return;
+
+//     let types = new Set();
+
+//     for (let sub in ecommerce[category]) {
+//         for (let type in ecommerce[category][sub]) {
+//             if (ecommerce[category][sub][type][brand]) {
+//                 types.add(type);
+//             }
+//         }
+//     }
+
+//     types.forEach(t => {
+//         typeSelect.innerHTML += `<option value="${t}">${t}</option>`;
+//     });
+// }
+
+// // ===================== APPLY FILTER =====================
+// function applyFilters() {
+//     const category = document.getElementById("category").value;
+//     const brand = document.getElementById("brand").value;
+//     const type = document.getElementById("type").value;
+
+//     const div = document.getElementById("allProducts");
+//     div.innerHTML = "";
+
+//     let found = false;
+
+//     if (!category) {
+//         alert("Select category first");
+//         return;
+//     }
+
+//     for (let sub in ecommerce[category]) {
+//         for (let t in ecommerce[category][sub]) {
+
+//             if (type && t !== type) continue;
+
+//             for (let b in ecommerce[category][sub][t]) {
+
+//                 if (brand && b !== brand) continue;
+
+//                 let product = ecommerce[category][sub][t][b];
+
+//                 render(product);
+//                 found = true;
+//             }
+//         }
+//     }
+
+//     if (!found) {
+//         Swal.fire({
+//             icon: "error",
+//             title: "No Product Found"
+//         });
+//     }
+// }
+
+// // ===================== CART =====================
+// function addToCart(product) {
+//     Swal.fire({
+//         title: "Added!",
+//         text: product.name + " added to cart",
+//         icon: "success"
+//     });
+// }
+
+// // ===================== INIT =====================
+// loadAllProducts();
+
+
 // ===================== RENDER FUNCTION =====================
 function render(product) {
     const div = document.getElementById("allProducts");
