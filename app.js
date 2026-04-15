@@ -105,6 +105,7 @@ var ecommerce = {
                     description:"A hybrid formula designed with ceramides and hyaluronic acid to strengthen the skin barrier while providing broad-spectrum protection."
                 }
             }
+        }
         },
         haircare: {
             Sunsilk: {
@@ -210,7 +211,7 @@ Clothes: {
                     description: " Beautiful Bridal Garara By Sadaf Fawad Khan "
                 }
                     }
-                        }
+                        
     },
     footwear: {
                "Women": {
